@@ -22,41 +22,53 @@ const TITLE = [
   'frendly палатка'
 ];
 
+const TYPE = [
+  'palace',
+  'flat',
+  'house',
+  'bungalow',
+  'hotel'
+];
+
+const ROOMS = [
+  1,
+  2,
+  3,
+  4
+];
 
 const idNumber = (() => {
-const result = [];
-for(let i= 1; i<=10; i++){
-  result[i] = i;
-  if(i<10){
-  i = 0 +  'result[i]'
+  const result = [];
+  for(let i= 1; i<=MAX_ID_AVATAR; i++){
+    result[i] = i.padStart(2, 0);
   }
-}
-})
+  return result;
+})();
 console.log(idNumber);
 
 
+const creatingLandlordCard = () => {
+  const author = {
+    avatar: `img/avatars/user${getRandomPositiveInteger(MIN_ID_NUMBER, idNumber)}.png`,
+  };
 
-const author = ()=>{
-  avatar = img/avatars/user`${getRandomPositiveInteger(MIN_ID_NUMBER, idNumber)}.png`
-}
+  const offer = () => ({
+    return: {
+      title : getRandomPositiveInteger(TITLE),
+      address : `${location.lat}` + ','+ ' '+ `${location.lng}`,
+      price : getRandomPositiveInteger(MIN_COST_PRICE, MAX_COST_PRICE),
+      type : getRandomPositiveInteger(TYPE),
+      palace: getRandomPositiveInteger(ROOMS),
+      flat,
+      house,
+      bungalow,
+      hotel
+    }
+  });
+};
 
-  //avatar, строка — адрес изображения вида img/avatars/user{{xx}}.png, где {{xx}} — это число от 1 до 10. Перед однозначными числами ставится 0. Например, 01, 02...10. Адреса изображений не повторяются.
 
-const offer = ()=>{
-   title = getRandomPositiveInteger(TITLE),
-   address = `${location.lat}`, `${location.lng}`;
-   price = getRandomPositiveInteger(MIN_COST_PRICE, MAX_COST_PRICE);
-   type = {
-    palace,
-    flat,
-    house,
-    bungalow,
-    hotel
-}
-
-}
-
- /* offer, объект — содержит информацию об объявлении. Состоит из полей:
+/* offer, объект — содержит информацию об объявлении. Состоит из полей:
 title, строка — заголовок предложения. Придумайте самостоятельно.
 address, строка — адрес предложения. Для простоты пусть пока составляется из географических координат по маске {{location.lat}}, {{location.lng}}.
 price, число — стоимость. Случайное целое положительное число.
