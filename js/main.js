@@ -11,6 +11,9 @@ function getRandomPositiveInteger (a, b) {
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 }
+
+const getRandomArrayElement = (elements)=> elements[getRandomPositiveInteger(0, elements.length-1)];
+
 const MIN_ID_NUMBER = 1;
 const MAX_ID_AVATAR = 10;
 const MIN_COST_PRICE = 1;
@@ -23,6 +26,10 @@ const LOCATION_LAT_MIN = 35.65000;
 const LOCATION_LAT_MAX = 35.70000;
 const LOCATION_LNG_MIN = 139.70000;
 const LOCATION_LNG_MAX = 139.80000;
+
+const locationByDefolt = {
+  lat: getRandomPositiveFloat(LOCATION_LAT_MIN, LOCATION_LAT_MAX),
+  lng: getRandomPositiveFloat(LOCATION_LNG_MIN, LOCATION_LNG_MAX)};
 
 const TITLE = [
   'крутая квартира',
@@ -83,13 +90,13 @@ const idNumber = (() => {
 console.log(idNumber);
 
 
-const creatingLandlordCard = () => ({
+const createLandlordCard = () => ({
   return: {
     autor: {
       avatar: `img/avatars/user${getRandomPositiveInteger(MIN_ID_NUMBER, idNumber)}.png`},
     offer: {
-      title: getRandomPositiveInteger(TITLE),
-      address: `${location.lat}, ${location.lng}`,
+      title: getRandomArrayElement(TITLE),
+      address: locationByDefolt.lat + ',' + locationByDefolt.lng,
       price: getRandomPositiveInteger(MIN_COST_PRICE, MAX_COST_PRICE),
       type: getRandomPositiveInteger(TYPE),
       rooms:getRandomPositiveInteger(MIN_NUMBER_ROOMS, MAX_NUMBER_ROOMS),
@@ -98,12 +105,13 @@ const creatingLandlordCard = () => ({
       checkout: getRandomPositiveInteger(CHECKOUT),
       features: getRandomPositiveInteger(FEATURES),
       description: getRandomPositiveInteger(DESCRIPTION),
-      photos: getRandomPositiveInteger(PHOTOS),
-      location: {lat: getRandomPositiveFloat(LOCATION_LAT_MIN, LOCATION_LAT_MAX),
-        lng: getRandomPositiveFloat(LOCATION_LNG_MIN, LOCATION_LNG_MAX)}
+      photos: getRandomPositiveInteger(PHOTOS)},
 
+    location : {
+      lat: locationByDefolt.lat,
+      lng: locationByDefolt.lng}
+  }}
+);
 
-    }
-  }});
-
-console.log(creatingLandlordCard());
+createLandlordCard();
+console.log(createLandlordCard());
