@@ -14,7 +14,6 @@ function getRandomPositiveInteger (a, b) {
 
 const getRandomArrayElement = (elements)=> elements[getRandomPositiveInteger(0, elements.length-1)];
 
-const MIN_ID_NUMBER = 1;
 const MAX_ID_AVATAR = 10;
 const MIN_COST_PRICE = 1;
 const MAX_COST_PRICE = 10000;
@@ -81,37 +80,42 @@ const PHOTOS = [
 ];
 
 const idNumber = (() => {
-  const result = [];
+  const results = [];
   for(let i= 1; i<=MAX_ID_AVATAR; i++){
-    result[i] = String(i).padStart(2, 0);
+    results[i] = i;
+    if (i<MAX_ID_AVATAR){
+      results[i] = '0'.concat(i);}
+
   }
-  return result;
+
+  return results;
 })();
 console.log(idNumber);
 
+const serialNumberPhoto = getRandomArrayElement(idNumber);
+console.log(serialNumberPhoto);
 
 const createLandlordCard = () => ({
   return: {
     autor: {
-      avatar: `img/avatars/user${getRandomPositiveInteger(MIN_ID_NUMBER, idNumber)}.png`},
+      avatar: `img/avatars/user${serialNumberPhoto}.png`},
     offer: {
       title: getRandomArrayElement(TITLE),
-      address: locationByDefolt.lat + ',' + locationByDefolt.lng,
+      address: `${locationByDefolt.lat}, ${locationByDefolt.lng}`,
       price: getRandomPositiveInteger(MIN_COST_PRICE, MAX_COST_PRICE),
-      type: getRandomPositiveInteger(TYPE),
+      type: getRandomArrayElement(TYPE),
       rooms:getRandomPositiveInteger(MIN_NUMBER_ROOMS, MAX_NUMBER_ROOMS),
       guests: getRandomPositiveInteger(MIN_NUMBER_GUEST, MAX_NUMBER_GUEST),
-      checkin: getRandomPositiveInteger(CHECKIN),
-      checkout: getRandomPositiveInteger(CHECKOUT),
-      features: getRandomPositiveInteger(FEATURES),
-      description: getRandomPositiveInteger(DESCRIPTION),
-      photos: getRandomPositiveInteger(PHOTOS)},
+      checkin: getRandomArrayElement(CHECKIN),
+      checkout: getRandomArrayElement(CHECKOUT),
+      features: getRandomArrayElement(FEATURES),
+      description: getRandomArrayElement(DESCRIPTION),
+      photos: getRandomArrayElement(PHOTOS)},
 
     location : {
       lat: locationByDefolt.lat,
       lng: locationByDefolt.lng}
-  }}
-);
+  }});
 
 createLandlordCard();
 console.log(createLandlordCard());
