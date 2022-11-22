@@ -25,6 +25,7 @@ const LOCATION_LAT_MIN = 35.65000;
 const LOCATION_LAT_MAX = 35.70000;
 const LOCATION_LNG_MIN = 139.70000;
 const LOCATION_LNG_MAX = 139.80000;
+const NUMBER_OBJECTS = 10;
 
 const locationByDefolt = {
   lat: getRandomPositiveFloat(LOCATION_LAT_MIN, LOCATION_LAT_MAX),
@@ -90,10 +91,8 @@ const idNumber = (() => {
 
   return results;
 })();
-console.log(idNumber);
 
 const serialNumberPhoto = getRandomArrayElement(idNumber);
-console.log(serialNumberPhoto);
 
 const createLandlordCard = () => ({
   return: {
@@ -117,5 +116,10 @@ const createLandlordCard = () => ({
       lng: locationByDefolt.lng}
   }});
 
-createLandlordCard();
-console.log(createLandlordCard());
+
+const createObjectLandlordСards = () =>{
+  const ObjectLandlordСards = Array.from({length: NUMBER_OBJECTS}, createLandlordCard);
+  return ObjectLandlordСards;
+};
+
+createObjectLandlordСards();
