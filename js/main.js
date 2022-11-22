@@ -13,6 +13,13 @@ function getRandomPositiveInteger (a, b) {
 }
 
 const getRandomArrayElement = (elements)=> elements[getRandomPositiveInteger(0, elements.length-1)];
+const getRandomArray = (elements) => {
+  const maxNumber = getRandomPositiveInteger(1, elements.length);
+  const minNumber = getRandomPositiveInteger(0, maxNumber - 1);
+  const randomArray = elements.slice(minNumber, maxNumber);
+  return randomArray;
+};
+
 
 const MAX_ID_AVATAR = 10;
 const MIN_COST_PRICE = 1;
@@ -107,9 +114,9 @@ const createLandlordCard = () => ({
       guests: getRandomPositiveInteger(MIN_NUMBER_GUEST, MAX_NUMBER_GUEST),
       checkin: getRandomArrayElement(CHECKIN),
       checkout: getRandomArrayElement(CHECKOUT),
-      features: getRandomArrayElement(FEATURES),
+      features: getRandomArray(FEATURES),
       description: getRandomArrayElement(DESCRIPTION),
-      photos: getRandomArrayElement(PHOTOS)},
+      photos: getRandomArray(PHOTOS)},
 
     location : {
       lat: locationByDefolt.lat,
@@ -122,4 +129,4 @@ const createObjectLandlordСards = () =>{
   return ObjectLandlordСards;
 };
 
-createObjectLandlordСards();
+console.log(createObjectLandlordСards());
